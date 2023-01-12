@@ -3,11 +3,17 @@ version: "3"
 services:
   api:
     container_name: api
-    image: api
+    image: sivuch999/docker-deploy:latest
     restart: always
     build:
       dockerfile: Dockerfile
       context: .
+    environment:
+      - DB_HOST=35.240.148.166
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_PASSWORD=Tk~a-i4*N8n}aC5@
+      - DB_NAME=education_db
     ports:
       - 8080:8080
     # depends_on:

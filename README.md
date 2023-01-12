@@ -12,11 +12,9 @@
     
       $ npm -v
     
-* ติดตั้ง docker และ docker-compose และลองตรวจสอบ ด้วยคำสั่ง
+* ติดตั้ง docker และลองตรวจสอบ ด้วยคำสั่ง
 
       $ docker -v
-    
-      $ docker-compose -v
     
 ## ทดสอบ run code โปรแกรม
 * clone project จาก https://github.com/sivuch999/docker_deploy_education.git
@@ -33,13 +31,13 @@
   
 
 ## ทดสอบ Deployment Code โปรแกรมของเราใน localhost
-* Build โค้ดของเราไปอยู่ใน docker image --> docker build -t {IMAGE_NAME} .
-    
-      $ docker build -t docker-deploy .
+  * Build โค้ดของเราไปอยู่ใน docker image --> docker build -t {IMAGE_NAME} .
       
-* run docker ให้เป็น container โดยใช้ port 8080 --> docker run -it -p {EXTERNAL_PORT}:{INTERNAL_PORT} -t {IMAGE_NAME}
-    
-      $ docker run -it -p 8080:8080 -t docker-deploy
+        $ docker build -t docker-deploy .
+        
+  * run docker ให้เป็น container โดยใช้ port 8080 --> docker run -p {EXTERNAL_PORT}:{INTERNAL_PORT} -t {IMAGE_NAME}
+      
+        $ docker run -p 8080:8080 -t docker-deploy
 
 ## ทดสอบ Deployment Code โปรแกรมของเราขึ้นไปบน server
   ### ทดลอง push docker image ขึ้นไปใน dockerhub
@@ -90,8 +88,37 @@
 
           $ docker pull sivuch999/docker-deploy:latest
       
-    * run docker ให้เป็น container โดยใช้ port 8080 --> docker run -it -p {EXTERNAL_PORT}:{INTERNAL_PORT} -t {IMAGE_NAME}
+    * run docker ให้เป็น container โดยใช้ port 8080 --> docker run -p {EXTERNAL_PORT}:{INTERNAL_PORT} -t {IMAGE_NAME}
     
-          $ docker run -it -p 8080:8080 -t sivuch999/docker-deploy:latest
+          $ docker run -p 8080:8080 -t sivuch999/docker-deploy:latest
 
-    * ลองเข้าไปที่ IP ของ Instance ตัวเอง เช่น http://34.143.166.34:8080 แล้วดูผลลัพธ์ 
+    * ลองเข้าไปที่ IP ของ Instance ตัวเอง เช่น http://34.143.166.34:8080 แล้วดูผลลัพธ์
+
+
+
+
+## Docker Keyword
+  **Command Options**
+  * docker build = build code ให้เป็น image
+  * docker run = run image ให้เป็น container
+  * docker push = push image ขึ้นไปเป็น hub
+  * docker pull = pull image ลงมาจาก hub
+  * docker images = แสดง list images
+  * docker ps = แสดง list container
+  * docker images rm = ลบ image
+  * docker rm = ลบ container
+  * ดูเพิ่มเติม: https://docs.docker.com/engine/reference/commandline/run/
+
+
+  **Build Options**
+  * -t (tag) = ชื่อและแท็กของ image
+  * ดูเพิ่มเติม: https://docs.docker.com/engine/reference/commandline/build/
+
+
+  **Run Options**
+  * -p (port) = ให้รันบน port ไหน?
+  * -d (detached mode) = สั่งรันแบบ background 
+  * ดูเพิ่มเติม: https://docs.docker.com/engine/reference/commandline/run/
+
+### Docker Compose
+* ไม่น่าทันไว้ก่อนละกัน ><
