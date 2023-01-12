@@ -16,7 +16,7 @@
 
       $ docker -v
     
-## ทดสอบ run code โปรแกรม
+## ทดสอบ Run Code โปรแกรม
 * clone project จาก https://github.com/sivuch999/docker_deploy_education.git
 * เข้าไปที่ project เปิด terminal ขึ้นมา แล้วติดตั้ง package module ต่างๆที่จำเป็นในการ run code ด้วยคำสั่ง
 
