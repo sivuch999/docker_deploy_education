@@ -1,32 +1,97 @@
-# ติดตั้ง git
-# ติดตั้ง nodejs v.^16
-# ติดตั้ง docker และ docker-compose
 
-# clone project จาก https://github.com/sivuch999/docker_deploy_education.git
+## ตรวจเช็คและเตรียมเครื่องมือ
+* ติดตั้ง โปรแกรม vscode หรือโปรแกรม code editor อื่นๆ
+  * ถ้าใช้ vscode ลองติดตั้ง Extension: Markdown Preview Enchanced จะอ่านแลปง่ายขึ้น
+* ติดตั้ง git และลองตรวจสอบ ด้วยคำสั่ง
 
-# เปิด terminal ขึ้นมา แล้วติดตั้ง package module ต่างๆที่จำเป็นในการ run code ด้วยคำสั่ง
-  $ npm install
+      $ git -v
+          
+* ติดตั้ง nodejs v.^16 และลองตรวจสอบ ด้วยคำสั่ง
 
-# ทดสอบ run code ด้วยคำสั่ง
-  $ npm run dev
+      $ node -v
+    
+      $ npm -v
+    
+* ติดตั้ง docker และ docker-compose และลองตรวจสอบ ด้วยคำสั่ง
 
-# ลองไปที่ browsers แล้วป้อน url เข้าไปที่ http://localhost:8080/
-  ## ถ้าถูกต้อง ระบบจะแสดงหน้าให้ระบุ ชื่อจริง-นามสกุล
+      $ docker -v
+    
+      $ docker-compose -v
+    
+## ทดสอบ run code โปรแกรม
+* clone project จาก https://github.com/sivuch999/docker_deploy_education.git
+* เข้าไปที่ project เปิด terminal ขึ้นมา แล้วติดตั้ง package module ต่างๆที่จำเป็นในการ run code ด้วยคำสั่ง
 
-# build โค้ดของเราไปอยู่ใน docker image // docker build -t {IMAGE_NAME} .
-  $ docker build -t docker-deploy .
+      $ npm install
+    
+* ทดสอบ run code ด้วยคำสั่ง
 
-# run docker ให้เป็น container โดยใช้ port 8080 // docker run -it -p {EXTERNAL_PORT}:{INTERNAL_PORT} -t {IMAGE_NAME}
-  $ docker run -it -p 8080:8080 -t docker-deploy
+      $ npm run dev
+    
+* ลองไปที่ browsers แล้วป้อน url เข้าไปที่ http://localhost:8080/ ถ้าถูกต้อง ระบบจะแสดงหน้าให้ระบุ ชื่อจริง-นามสกุล
 
-# ทดลอง push docker image ขึ้นไปใน dockerhub
-  # เข้าไปที่เว็บ https://hub.docker.com/
-  # สมัครสมาชิก และเข้าสู่ระบบ
-  # สร้าง Repository ขึ้นมา
-  # กลับมาที่หน้า terminal แล้ว build โค้ดของเราไปอยู่ใน docker image
-  # แต่รอบนี้เปลี่ยน IMAGE_NAME ให้เป็นชื่อ username/repository ของ dockerhub // docker build -t {HUB_USERNAME}/{HUB_REPOSITORY} .
-    $ docker build -t sivuch999/docker-deploy .
-  # ทำการ push docker image ของเราขึ้นไปบน docker hub // docker push sivuch999/docker-deploy:{TAG_NAME}
-    $ docker push sivuch999/docker-deploy:latest
-  # ลองไปดูที่หน้าเว็บ dockerhub จะเห็นว่ามี image ที่เรา push ขึ้นไปเมื่อกี้มาแล้ว
+  
 
+## ทดสอบ Deployment Code โปรแกรมของเราใน localhost
+* Build โค้ดของเราไปอยู่ใน docker image --> docker build -t {IMAGE_NAME} .
+    
+      $ docker build -t docker-deploy .
+      
+* run docker ให้เป็น container โดยใช้ port 8080 --> docker run -it -p {EXTERNAL_PORT}:{INTERNAL_PORT} -t {IMAGE_NAME}
+    
+      $ docker run -it -p 8080:8080 -t docker-deploy
+
+## ทดสอบ Deployment Code โปรแกรมของเราขึ้นไปบน server
+  ### ทดลอง push docker image ขึ้นไปใน dockerhub
+
+  * เข้าไปที่เว็บ https://hub.docker.com/
+
+  * สมัครสมาชิก และเข้าสู่ระบบ
+
+  * สร้าง Repository ขึ้นมา
+
+  * กลับมาที่หน้า terminal แล้ว build โค้ดของเราไปอยู่ใน docker image
+
+  * แต่รอบนี้เปลี่ยน IMAGE_NAME ให้เป็นชื่อ username/repository ของ dockerhub --> docker build -t {HUB_USERNAME}/{HUB_REPOSITORY} .
+
+        $ docker build -t sivuch999/docker-deploy .
+        
+
+  * ทำการ push docker image ของเราขึ้นไปบน docker hub --> docker push {HUB_USERNAME}/{HUB_REPOSITORY}:{TAG_NAME}
+
+        $ docker push sivuch999/docker-deploy:latest
+
+  * ลองไปดูที่หน้าเว็บ dockerhub จะเห็นว่ามี image ที่เรา push ขึ้นไปเมื่อกี้มาแล้ว
+  ### เปิด Server ของตัวเองขึ้นมา (ในที่นี้แนะนำ Google Cloud เพราะมี Free Credit 300$)
+  * ไปที่เว็บไซต์ https://console.cloud.google.com แล้ว เข้าสู่ระบบ
+  * ไปที่ Compute Engine -> VM Instances -> Create Instance
+    * Region: asia-southeast1 (Singapore)
+    * Machine:
+      * Series: E2
+      * Type: e2-small
+    * Access scopes:
+      * Allow full access to all Cloud APIs
+    * Firewall:
+      * Allow HTTP traffic
+      * Allow HTTPS traffic
+  * ติดตั้ง Docker บน Server Instance
+    * เปิด SSH ของ Instance ขึ้นมา
+    * ไปที่เว็บไซต์ https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-debian-10
+    * ติดตั้งตาม Step ที่เว็บไซต์แนะนำ (ทำแค่ Step1)
+    * ลองตรวจสอบ ด้วยคำสั่ง
+
+          $ docker -v
+
+    * เข้าไปที่ Role root ด้วยคำสั่ง
+
+          $ sudo -s
+    
+    * pull docker image จาก docker hub ด้วยคำสั่ง --> docker pull {HUB_USERNAME}/{HUB_REPOSITORY}:{TAG_NAME}
+
+          $ docker pull sivuch999/docker-deploy:latest
+      
+    * run docker ให้เป็น container โดยใช้ port 8080 --> docker run -it -p {EXTERNAL_PORT}:{INTERNAL_PORT} -t {IMAGE_NAME}
+    
+          $ docker run -it -p 8080:8080 -t sivuch999/docker-deploy:latest
+
+    * ลองเข้าไปที่ IP ของ Instance ตัวเอง เช่น http://34.143.166.34:8080 แล้วดูผลลัพธ์ 
