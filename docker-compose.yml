@@ -1,0 +1,31 @@
+version: "3"
+    
+services:
+  # api:
+  #   container_name: api
+  #   image: api
+  #   restart: always
+  #   build:
+  #     dockerfile: Dockerfile
+  #     context: .
+  #   ports:
+  #     - 8080:8080
+  #   depends_on:
+  #     - mysql
+
+    mysql:
+      platform: linux/x86_64
+      image: mysql:5.7
+      restart: always
+      environment:
+        MYSQL_DATABASE: 'deploy_test'
+        MYSQL_USER: 'user'
+        MYSQL_PASSWORD: 'password'
+        MYSQL_ROOT_PASSWORD: 'Passw0rd'
+      ports:
+        - 3307:3306
+      volumes:
+        - ./mysql:/var/lib/mysql
+
+volumes:
+  mysql:

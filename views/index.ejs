@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Hello EJS</title>
+</head>
+<body>
+    <form method="post" action="./insert">
+        <label>ชื่อจริง:</label>
+        <input name="firstname">
+        <label>นามสกุล:</label>
+        <input name="lastname">
+        <input type="submit" value="เพิ่ม">
+    </form>
+
+    <form method="post" action="./update">
+        <ul>
+            <% results.forEach((e, k) => { %>
+            <li>
+                <%= e.id %>:
+                <input class="id" name="ids[]" type="hidden" value="<%= e.id %>">
+                <input class="fname" name="firstnames[]" value="<%= e.firstname %>">
+                <input class="lname" name="lastnames[]" value="<%= e.lastname %>">
+                <button type="button" onclick="getEdit(<%= k %>)">แก้ไข</button>
+                <a href="./delete?id=<%= e.id %>"><button type="button">ลบ</button></a>
+            </li>
+            <% }) %>
+        </ul>
+    </form>
+
+</body>
+</html>
+
+<script>
+    const getEdit =  async (k) => {
+        const data = {
+            id: document.getElementsByClassName("id")[k].value,
+            firstname: document.getElementsByClassName("fname")[k].value,
+            lastname: document.getElementsByClassName("lname")[k].value,
+        }
+        const response = await fetch('/update', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (response) {
+            setTimeout(() => { window.location.href = './' }, 500)
+        }
+    }
+    
+
+</script>
