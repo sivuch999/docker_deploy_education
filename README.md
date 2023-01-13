@@ -35,9 +35,9 @@
       
         $ docker build -t docker-deploy .
         
-  * run docker ให้เป็น container โดยใช้ port 8080 --> docker run -p {EXTERNAL_PORT}:{INTERNAL_PORT} -t {IMAGE_NAME}
+  * run docker ให้เป็น container โดยใช้ port 8080 --> docker run -p {EXTERNAL_PORT}:{INTERNAL_PORT} {IMAGE_NAME}
       
-        $ docker run -p 8080:8080 -t docker-deploy
+        $ docker run -p 8080:8080 docker-deploy
 
 ## ทดสอบ Deployment Code โปรแกรมของเราขึ้นไปบน server
   ### ทดลอง push docker image ขึ้นไปใน dockerhub
@@ -88,9 +88,9 @@
 
           $ docker pull sivuch999/docker-deploy:latest
       
-    * run docker ให้เป็น container โดยใช้ port 8080 --> docker run -p {EXTERNAL_PORT}:{INTERNAL_PORT} -t {IMAGE_NAME}
+    * run docker ให้เป็น container โดยใช้ port 8080 --> docker run -p {EXTERNAL_PORT}:{INTERNAL_PORT} {IMAGE_NAME}
     
-          $ docker run -p 8080:8080 -t sivuch999/docker-deploy:latest
+          $ docker run -p 8080:8080 sivuch999/docker-deploy:latest
 
     * ลองเข้าไปที่ IP ของ Instance ตัวเอง เช่น http://34.143.166.34:8080 แล้วดูผลลัพธ์
 
