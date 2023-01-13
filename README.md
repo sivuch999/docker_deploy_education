@@ -107,7 +107,7 @@
   * docker ps = แสดง list container
   * docker images rm = ลบ image
   * docker rm = ลบ container
-  * ดูเพิ่มเติม: https://docs.docker.com/engine/reference/commandline/run/
+  * ดูเพิ่มเติม: docker --help
 
 
   **Build Options**
