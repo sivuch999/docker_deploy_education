@@ -6,10 +6,10 @@
 <body>
     <form method="post" action="./insert">
         <label>ชื่อจริง:</label>
-        <input name="firstname">
+        <input name="firstname" required>
         <label>นามสกุล:</label>
-        <input name="lastname">
-        <input type="submit" value="เพิ่ม">
+        <input name="lastname" required>
+        <input type="submit" onclick="alerting()" value="เพิ่ม">
     </form>
 
     <form method="post" action="./update">
@@ -21,7 +21,7 @@
                 <input class="fname" name="firstnames[]" value="<%= e.firstname %>">
                 <input class="lname" name="lastnames[]" value="<%= e.lastname %>">
                 <button type="button" onclick="getEdit(<%= k %>)">แก้ไข</button>
-                <a href="./delete?id=<%= e.id %>"><button type="button">ลบ</button></a>
+                <a href="./delete?id=<%= e.id %>" onclick="alerting()"><button type="button">ลบ</button></a>
             </li>
             <% }) %>
         </ul>
@@ -31,7 +31,11 @@
 </html>
 
 <script>
+    const alerting = () => {
+        alert('กำลังดำเนินการ...')
+    }
     const getEdit =  async (k) => {
+        alerting()
         const data = {
             id: document.getElementsByClassName("id")[k].value,
             firstname: document.getElementsByClassName("fname")[k].value,
