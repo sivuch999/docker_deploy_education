@@ -27,7 +27,6 @@
     
 * ลองไปที่ browsers แล้วป้อน url เข้าไปที่ http://localhost:8080/ ถ้าถูกต้อง ระบบจะแสดงหน้าให้ระบุ ชื่อจริง-นามสกุล
 
-  
 
 ## ทดสอบ Deployment Code โปรแกรมของเราใน localhost
   * Build โค้ดของเราไปอยู่ใน docker image --> docker build -t {IMAGE_NAME} .

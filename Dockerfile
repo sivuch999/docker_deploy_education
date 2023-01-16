@@ -1,6 +1,6 @@
 ARG NODE_VERSION=16.15.0
 
-FROM node:${NODE_VERSION}-alpine as test
+FROM node:${NODE_VERSION}-alpine
 
 WORKDIR /usr/src/api
 COPY . /usr/src/api
