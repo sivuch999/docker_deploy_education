@@ -1,18 +1,17 @@
-
 ## ตรวจเช็คและเตรียมเครื่องมือ
-* ติดตั้ง โปรแกรม vscode หรือโปรแกรม code editor อื่นๆ
+* ติดตั้ง โปรแกรม vscode (https://code.visualstudio.com/download) หรือโปรแกรม code editor อื่นๆ
   * ถ้าใช้ vscode ลองติดตั้ง Extension: Markdown Preview Enchanced จะอ่านแลปง่ายขึ้น
-* ติดตั้ง git และลองตรวจสอบ ด้วยคำสั่ง
+* ติดตั้ง git (https://git-scm.com/downloads) และลองตรวจสอบ ด้วยคำสั่ง
 
       $ git -v
           
-* ติดตั้ง nodejs v.^16 และลองตรวจสอบ ด้วยคำสั่ง
+* ติดตั้ง nodejs v.^16 (https://nodejs.org/en/download) และลองตรวจสอบ ด้วยคำสั่ง
 
       $ node -v
     
-      $ npm -v
+      $ npm -vAccenture
     
-* ติดตั้ง docker และลองตรวจสอบ ด้วยคำสั่ง
+* ติดตั้ง docker (https://www.docker.com) และลองตรวจสอบ ด้วยคำสั่ง
 
       $ docker -v
     
