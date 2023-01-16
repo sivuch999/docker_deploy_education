@@ -9,7 +9,7 @@
 
       $ node -v
     
-      $ npm -vAccenture
+      $ npm -v
     
 * ติดตั้ง docker (https://www.docker.com) และลองตรวจสอบ ด้วยคำสั่ง
 
