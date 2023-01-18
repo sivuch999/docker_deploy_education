@@ -46,7 +46,11 @@
 
   * สร้าง Repository ขึ้นมา
 
-  * กลับมาที่หน้า terminal แล้ว build โค้ดของเราไปอยู่ใน docker image
+  * กลับมาที่หน้า terminal แล้ว login dockerhub บนเครื่องเราด้วยคำสั่ง
+  
+        $ docker login
+
+  * จากนั้นให้ลอง build โค้ดของเราไปอยู่ใน docker image
 
   * แต่รอบนี้เปลี่ยน IMAGE_NAME ให้เป็นชื่อ username/repository ของ dockerhub --> docker build -t {HUB_USERNAME}/{HUB_REPOSITORY} .
 
