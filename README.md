@@ -123,4 +123,11 @@
   * ดูเพิ่มเติม: https://docs.docker.com/engine/reference/commandline/run/
 
 ### Docker Compose
-* ไม่น่าทันไว้ก่อนละกัน ><
+* ติดตั้ง docker (https://docs.docker.com/compose/install) และลองตรวจสอบ ด้วยคำสั่ง
+ 
+      $ docker-compose -v
+
+* เปิดไฟล์ docker-compose.yml ลองทำความเข้าใจคำสั่งต่างๆภายในไฟล์ เพิ่มเติมจาก (https://docs.docker.com/compose/reference/)
+* ทดสอบ Run ไฟล์ docker-compose ด้วยคำสั่ง
+
+      $ docker-compose up --build

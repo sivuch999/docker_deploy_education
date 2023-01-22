@@ -13,16 +13,18 @@ const main = () => {
     app.use(bodyParser.json())
     app.use(bodyParser.urlencoded({ extended: true }))
 
-    // console.log(process.env)
+    // console.log('process.env', process.env)
 
     // connect database
-    const db = mysql.createConnection({
+    const configs = {
         host: process.env.DB_HOST ?? 'localhost',
-        port: process.env.DB_PORT ?? 3307,
+        port: Number(process.env.DB_PORT) ?? 3306,
         user: process.env.DB_USERNAME ?? 'user',
         password: process.env.DB_PASSWORD ?? 'password',
         database: process.env.DB_NAME ?? 'deploy_test'
-    })
+    }
+    const db = mysql.createPool(configs)
+    autoMigration(db)
 
     // set the view engine to ejs
     app.set('view engine', 'ejs')
@@ -70,6 +72,26 @@ const main = () => {
     const port = 8080
     app.listen(port)
     console.log(`Server is listening on port ${port}`)
+}
+
+autoMigration = async (db) => {
+    db.query('SELECT * FROM `users`',
+        (error, results) => {
+            if(error) {
+                db.query(`CREATE TABLE education_db.users (id int AUTO_INCREMENT,firstname varchar(255),lastname varchar(255), PRIMARY KEY (id))`,
+                (error, results) => {
+                    if(!error) {
+                        db.query(`
+                            ALTER TABLE education_db.users
+                            CHANGE firstname firstname varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+                            CHANGE lastname lastname varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL
+                        `)
+                    }
+                })
+
+            }
+        }
+    )
 }
 
 main()
