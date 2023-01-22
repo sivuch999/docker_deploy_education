@@ -97,8 +97,6 @@
     * ลองเข้าไปที่ IP ของ Instance ตัวเอง เช่น http://34.143.166.34:8080 แล้วดูผลลัพธ์
 
 
-
-
 ## Docker Keyword
   **Command Options**
   * docker build = build code ให้เป็น image
@@ -123,11 +121,35 @@
   * ดูเพิ่มเติม: https://docs.docker.com/engine/reference/commandline/run/
 
 ### Docker Compose
+* pull code เวอร์ชั่นนล่าสุดจาก https://github.com/sivuch999/docker_deploy_education.git
 * ติดตั้ง docker (https://docs.docker.com/compose/install) และลองตรวจสอบ ด้วยคำสั่ง
  
       $ docker-compose -v
 
 * เปิดไฟล์ docker-compose.yml ลองทำความเข้าใจคำสั่งต่างๆภายในไฟล์ เพิ่มเติมจาก (https://docs.docker.com/compose/reference/)
+
+
 * ทดสอบ Run ไฟล์ docker-compose ด้วยคำสั่ง
 
       $ docker-compose up --build
+
+* ทำการ push docker image ของเราขึ้นไปบน docker hub โดยใช้ docker-compose ด้วยคำสั่ง
+
+      $ docker-compose push
+
+* ลองไปดูที่หน้าเว็บ dockerhub จะเห็นว่ามี image ที่เรา push ขึ้นไปเมื่อกี้มาแล้ว
+* กลับไปที่หน้า SSH GCP Server หรือ Server อื่นๆ ที่ติดตั้งไว้
+* ติดตั้ง docker compose บน server (https://docs.docker.com/compose/install/linux/#install-using-the-repository) และลองตรวจสอบ ด้วยคำสั่ง
+ 
+      $ docker compose version
+
+* จะเห็นว่าคำสั่งที่ใช้รันบน local อาจจะไม่เหมือนกัน เพราะบางคนติดตั้งแบบ plugin บางคนติดตั้งแบบ standalone 
+  * ในกรณีนี้คือบน server ติดตั้งแบบ plugin และบน local ส่วนมากน่าจะเป็นแบบ standalone
+  * แต่การใช้งานทั้ง 2 แบบไม่ต่างกัน
+* อัพโหลดไฟล์ docker-compose.yml ขึ้นไปบนเซิร์ฟเวอร์ ด้วยวิธีไหนก็ได้ (ง่ายสุดถ้าใช้ GCP เปิดหน้า SSH มาจะมีปุ่มให้ Upload File บนขวามือ)
+* ทดสอบ Run ไฟล์ docker-compose ด้วยคำสั่ง
+
+      $ docker compose up
+
+* ตัว docker compose จะ pull image และ run ให้อัตโนมัติ
+* ถ้าเสร็จหมดแล้วให้ clean LAB ด้วยคำสั่ง docker compose down (หรือ docker-compose down) ทั้งฝั่ง server และ local
