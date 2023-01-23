@@ -128,8 +128,7 @@
       $ docker-compose -v
 
 * เปิดไฟล์ docker-compose.yml ลองทำความเข้าใจคำสั่งต่างๆภายในไฟล์ เพิ่มเติมจาก (https://docs.docker.com/compose/reference/)
-
-
+* แก้ไขส่วนของ services.api.image ให้เป็นชื่อ image บน hub ของตัวเอง
 * ทดสอบ Run ไฟล์ docker-compose ด้วยคำสั่ง (--build หมายถึง สั่งให้ build Dockerfile ก่อน Run)
 
       $ docker-compose up --build
