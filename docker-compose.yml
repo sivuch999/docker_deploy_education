@@ -7,7 +7,7 @@ networks:
 services:
   api:
     container_name: api
-    image: sivuch999/docker-deploy:latest
+    image: sivuch999/docker-deploy:latest # เปลี่ยนเป็นชื่อ image บน hub ของตัวเอง
     restart: always
     build:
       dockerfile: Dockerfile
@@ -35,7 +35,6 @@ services:
       MYSQL_DATABASE: 'education_db'
       MYSQL_USER: 'user'
       MYSQL_PASSWORD: 'password'
-      MYSQL_ROOT_HOST: '%'
     ports:
       - 3306:3306
     volumes:
@@ -44,6 +43,6 @@ services:
       test: mysql -uroot education_db -e 'select 1'
       interval: 2s
       timeout: 60s
-      retries: 20
+      retries: 40
     networks:
       - docker_deploy_education_network

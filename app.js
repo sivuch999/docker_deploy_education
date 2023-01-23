@@ -13,25 +13,29 @@ const main = () => {
     app.use(bodyParser.json())
     app.use(bodyParser.urlencoded({ extended: true }))
 
-    // console.log('process.env', process.env)
-
-    // connect database
-    const configs = {
-        host: process.env.DB_HOST ?? 'localhost',
-        port: Number(process.env.DB_PORT) ?? 3306,
-        user: process.env.DB_USERNAME ?? 'user',
-        password: process.env.DB_PASSWORD ?? 'password',
-        database: process.env.DB_NAME ?? 'deploy_test'
+    let DB = null
+    try {
+        // console.log('ENV', process.env)
+        // connect database
+        const configs = {
+            host: process.env.DB_HOST ?? 'localhost',
+            port: Number(process.env.DB_PORT) ?? 3306,
+            user: process.env.DB_USERNAME ?? 'user',
+            password: process.env.DB_PASSWORD ?? 'password',
+            database: process.env.DB_NAME ?? 'education_db'
+        }
+        DB = mysql.createPool(configs)
+        autoMigration(DB)
+    } catch (error) {
+        console.log(error)
     }
-    const db = mysql.createPool(configs)
-    autoMigration(db)
 
     // set the view engine to ejs
     app.set('view engine', 'ejs')
 
     // index page
     app.get('/', function(req, res) {
-        db.query('SELECT * FROM `users`',
+        DB.query('SELECT * FROM `users`',
         (error, results) => {
             if(error) { throw error }
             res.render('index', { results })
@@ -41,7 +45,7 @@ const main = () => {
     // insert api
     app.post('/insert', function(req, res) {
         const { firstname, lastname } = req.body
-        db.query('INSERT INTO `users`(`firstname`, `lastname`) VALUES (?, ?)', [firstname, lastname],
+        DB.query('INSERT INTO `users`(`firstname`, `lastname`) VALUES (?, ?)', [firstname, lastname],
         (error, results) => {
             if(error) { throw error }
             setTimeout(() => { res.redirect('/') }, 500)
@@ -51,7 +55,7 @@ const main = () => {
     // update api
     app.post('/update', function(req, res) {
         const { id, firstname, lastname } = req.body
-        db.query(`UPDATE users SET firstname='${firstname}', lastname='${lastname}' WHERE id = ?`, [id],
+        DB.query(`UPDATE users SET firstname='${firstname}', lastname='${lastname}' WHERE id = ?`, [id],
         (error, results) => {
             if(error) { throw error }
             res.status(200).json(results)
@@ -61,7 +65,7 @@ const main = () => {
     // delete api
     app.get('/delete', function(req, res) {
         const { id } = req.query
-        db.query('DELETE FROM `users` WHERE id = ?', [id],
+        DB.query('DELETE FROM `users` WHERE id = ?', [id],
         (error, results) => {
             if(error) { throw error }
             setTimeout(() => { res.redirect('/') }, 500)

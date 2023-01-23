@@ -1,3 +1,4 @@
+# Docker
 ## ตรวจเช็คและเตรียมเครื่องมือ
 * ติดตั้ง โปรแกรม vscode (https://code.visualstudio.com/download) หรือโปรแกรม code editor อื่นๆ
   * ถ้าใช้ vscode ลองติดตั้ง Extension: Markdown Preview Enchanced จะอ่านแลปง่ายขึ้น
@@ -106,7 +107,7 @@
   * docker images = แสดง list images
   * docker ps = แสดง list container
   * docker images rm = ลบ image
-  * docker rm = ลบ container
+  * docker rm = ลบ container (optional: rm -f = remove force)
   * ดูเพิ่มเติม: docker --help
 
 
@@ -120,7 +121,7 @@
   * -d (detached mode) = สั่งรันแบบ background 
   * ดูเพิ่มเติม: https://docs.docker.com/engine/reference/commandline/run/
 
-### Docker Compose
+# Docker Compose
 * pull code เวอร์ชั่นนล่าสุดจาก https://github.com/sivuch999/docker_deploy_education.git
 * ติดตั้ง docker (https://docs.docker.com/compose/install) และลองตรวจสอบ ด้วยคำสั่ง
  
@@ -129,7 +130,7 @@
 * เปิดไฟล์ docker-compose.yml ลองทำความเข้าใจคำสั่งต่างๆภายในไฟล์ เพิ่มเติมจาก (https://docs.docker.com/compose/reference/)
 
 
-* ทดสอบ Run ไฟล์ docker-compose ด้วยคำสั่ง
+* ทดสอบ Run ไฟล์ docker-compose ด้วยคำสั่ง (--build หมายถึง สั่งให้ build Dockerfile ก่อน Run)
 
       $ docker-compose up --build
 
@@ -146,7 +147,7 @@
 * จะเห็นว่าคำสั่งที่ใช้รันบน local อาจจะไม่เหมือนกัน เพราะบางคนติดตั้งแบบ plugin บางคนติดตั้งแบบ standalone 
   * ในกรณีนี้คือบน server ติดตั้งแบบ plugin และบน local ส่วนมากน่าจะเป็นแบบ standalone
   * แต่การใช้งานทั้ง 2 แบบไม่ต่างกัน
-* อัพโหลดไฟล์ docker-compose.yml ขึ้นไปบนเซิร์ฟเวอร์ ด้วยวิธีไหนก็ได้ (ง่ายสุดถ้าใช้ GCP เปิดหน้า SSH มาจะมีปุ่มให้ Upload File บนขวามือ)
+* อัพโหลดไฟล์ docker-compose.yml ขึ้นไปบนเซิร์ฟเวอร์ ด้วยวิธีไหนก็ได้ (ถ้าใช้ GCP เปิดหน้า SSH มาจะมีปุ่มให้ Upload File บนขวามือ)
 * ทดสอบ Run ไฟล์ docker-compose ด้วยคำสั่ง
 
       $ docker compose up
